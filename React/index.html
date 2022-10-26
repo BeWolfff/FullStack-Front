@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        // Component
+        const Hello = (props) => {
+            return (
+                <div className="heading" >
+                    <h1>{props.message}</h1>
+                    <p>{props.subtitle}</p>
+                    <p>{props.wrapper}</p>
+
+                </div>
+            )
+        }
+
+        const Numbers = () => {
+          
+        }
+
+        const Wrapper = () => {
+          const elems = [ 4, 3 ,7 ];
+    return (
+        <div className="wrapper" >
+        {elems.map((elem, i) => {
+
+            return (
+                <p key={i}>{elem}</p>
+            )
+        })}
+        </div>
+          )
+
+        }
+
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+          <Hello message="Hello React" subtitle="Enjoy ! " wrapper={Wrapper()} />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

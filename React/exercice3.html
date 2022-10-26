@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport content=" width-devise-width, initial-scale="1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Exercice 3 React</title>
+    <style>
+        .heading {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+
+        // Component
+
+        const App = (props) => {
+        const products = [
+          { prices: [1.2, 1.1, 1.0], name: "apple" },
+          { prices: [1.8, 1.0, 1.9], name: "orange" },
+          { prices: [1.0, 0.9, 1.1], name: "bananas" },
+        ];
+
+        return (
+          <div>
+            <ul className="Hello">
+              {products.map((f, i) => {
+                return (
+                  <li key={i} className="Hello">
+                    {f.name} <Fruit prices={f.prices} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      };
+
+      const Fruit = (props) => {
+        const { prices } = props;
+        const moyenne = (
+          prices.reduce(
+            (preValue, currentValue) => preValue + currentValue,0) / prices.length).toFixed(2);
+        return (
+          <ul className="Hello">
+            <li className="Hello">prices :</li>
+            <Price prices={prices} />
+            <li className="Hello">moyenne : {moyenne}</li>
+          </ul>
+        );
+      };
+
+      const Price = (props) => {
+        const { prices } = props;
+        return (
+          <ul className="Hello">
+            {prices.map((p, i) => (
+              <li className="Hello" key={i}>
+                {p}
+              </li>
+            ))}
+          </ul>
+        );
+      };
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
